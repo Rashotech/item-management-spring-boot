@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ImplementItemService implements ItemService {
+public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
