@@ -1,6 +1,6 @@
 package com.springbootproject.itemManagement.services;
 
-import com.springbootproject.itemManagement.entity.Item;
+import com.springbootproject.itemManagement.models.Item;
 import com.springbootproject.itemManagement.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

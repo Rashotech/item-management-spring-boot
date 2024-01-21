@@ -1,4 +1,4 @@
-package com.springbootproject.itemManagement.entity;
+package com.springbootproject.itemManagement.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
