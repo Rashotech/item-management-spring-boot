@@ -10,11 +10,23 @@ public class Item {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private Long id;
-    private String name;
-    private double price;
-    private String description;
 
-    public long getId() {
+    private String name;
+
+    private Integer quantity;
+
+    private String category;
+
+    public Item() {
+    }
+
+    public Item(String name, Integer quantity, String category) {
+        this.name = name;
+        this.quantity = quantity;
+        this.category = category;
+    }
+
+    public Long getId() {
         return id;
     }
 
@@ -30,19 +42,19 @@ public class Item {
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
+    public Integer getQuantity() {
+        return quantity;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setQuantity(Integer quantity) {
+        this.quantity = quantity;
     }
 
-    public String getDescription() {
-        return description;
+    public String getCategory() {
+        return category;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

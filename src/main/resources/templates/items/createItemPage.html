@@ -22,18 +22,18 @@
             <div class="col-lg-7 mx-auto">
                 <div class="bg-white rounded-lg shadow-sm p-5">
                     <h3 class="my-6">Create Item</h3>
-                    <form role="form" th:action="@{register}" method="post">
+                    <form role="form" th:action="@{/item/create}" method="post">
                         <div class="mb-3">
-                            <label for="name" class="form-label">Item Name</label>
-                            <input type="text" class="form-control" id="name"  name="name" required>
+                            <label for="itemName" class="form-label">Item Name</label>
+                            <input type="text" class="form-control" id="itemName"  name="itemName" required>
                         </div>
                         <div class="mb-3">
-                            <label for="quantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" required>
+                            <label for="itemQuantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="itemQuantity" name="itemQuantity" required>
                         </div>
                         <div class="mb-3">
-                            <label for="category" class="form-label">Item Category</label>
-                            <select class="form-select" id="category" name="category" aria-label="Select Item Category">
+                            <label for="itemCategory" class="form-label">Item Category</label>
+                            <select class="form-select" id="itemCategory" name="itemCategory" aria-label="Select Item Category">
                                 <option value="1">One</option>
                                 <option value="2">Two</option>
                                 <option value="3">Three</option>

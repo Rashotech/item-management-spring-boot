@@ -47,13 +47,13 @@ public class ItemController {
     }
 
     // registered items
-    @RequestMapping(value = "/registered", method = RequestMethod.POST)
+    @RequestMapping(value = "/item/create", method = RequestMethod.POST)
     public ModelAndView register(
             @RequestParam(value = "itemName") String name,
-            @RequestParam(value = "itemPrice") double price,
-            @RequestParam(value = "itemDesc") String description
+            @RequestParam(value = "itemQuantity") Integer quantity,
+            @RequestParam(value = "itemCategory") String category
     ) {
-        itemService.createItem(name, price, description);
+        itemService.createItem(name, quantity, category);
         String redirectUrl = "/inventory";
         return new ModelAndView(new RedirectView(redirectUrl));
     }
