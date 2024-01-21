@@ -24,23 +24,15 @@ public class ItemController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView landingPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("items/landingPage");
-        return modelAndView;
-    }
-
-    // display home page
-    @RequestMapping(value = "/home", method = RequestMethod.GET)
-    public ModelAndView homePage() {
-        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("items/homePage");
         return modelAndView;
     }
 
-    // display registration page
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    // Display Item Create page
+    @RequestMapping(value = "/item/create", method = RequestMethod.GET)
     public ModelAndView registerItemPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("items/registerItemPage");
+        modelAndView.setViewName("items/createItemPage");
         return modelAndView;
     }
 

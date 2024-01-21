@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{/items/fragments/layouts/base_layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org/">
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Create Item</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create Item</li>
+        </ol>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="bg-white rounded-lg shadow-sm p-5">
+                    <h3 class="my-6">Create Item</h3>
+                    <form role="form" th:action="@{register}" method="post">
+                        <div class="mb-3">
+                            <label for="name" class="form-label">Item Name</label>
+                            <input type="text" class="form-control" id="name"  name="name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="category" class="form-label">Item Category</label>
+                            <select class="form-select" id="category" name="category" aria-label="Select Item Category">
+                                <option value="1">One</option>
+                                <option value="2">Two</option>
+                                <option value="3">Three</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+</body>
+</html>
