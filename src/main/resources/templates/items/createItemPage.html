@@ -32,8 +32,8 @@
                             <input type="number" class="form-control" id="itemQuantity" name="itemQuantity" required>
                         </div>
                         <div class="mb-3">
-                            <label for="category" class="form-label">Item Category</label>
-                            <select class="form-select" id="category" name="category" aria-label="Select Item Category">
+                            <label for="itemCategory" class="form-label">Item Category</label>
+                            <select class="form-select" id="itemCategory" name="itemCategory" aria-label="Select Item Category">
                                 <option selected>Select category</option>
                                 <option th:each="category : ${categories}" th:object="${category}" th:value="${category.id}" th:text="${category.name}"></option>
                             </select>
