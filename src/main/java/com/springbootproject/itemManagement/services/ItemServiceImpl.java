@@ -1,5 +1,6 @@
 package com.springbootproject.itemManagement.services;
 
+import com.springbootproject.itemManagement.models.Category;
 import com.springbootproject.itemManagement.models.Item;
 import com.springbootproject.itemManagement.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class ItemServiceImpl implements ItemService {
 
     // create item and save into Repository connected to the database
     @Override
-    public void createItem(String name, Integer quantity, String category) {
+    public void createItem(String name, Integer quantity, Category category) {
         Item item = new Item(name, quantity, category);
         itemRepository.save(item);
     }
@@ -35,7 +36,8 @@ public class ItemServiceImpl implements ItemService {
 
     // update item data using inbuilt save() method
     @Override
-    public void updateItem(Item item) {
+    public void updateItem(Long id, Item item) {
+        item.setId(id);
         itemRepository.save(item);
     }
 

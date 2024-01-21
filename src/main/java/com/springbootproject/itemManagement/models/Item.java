@@ -1,10 +1,11 @@
 package com.springbootproject.itemManagement.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+
 @Entity
+@Table(name = "items")
 public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,12 +16,15 @@ public class Item {
 
     private Integer quantity;
 
-    private String category;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    @OnDelete(action = OnDeleteAction.SET_NULL)
+    private Category category;
 
     public Item() {
     }
 
-    public Item(String name, Integer quantity, String category) {
+    public Item(String name, Integer quantity, Category category) {
         this.name = name;
         this.quantity = quantity;
         this.category = category;
@@ -50,11 +54,21 @@ public class Item {
         this.quantity = quantity;
     }
 
-    public String getCategory() {
+    public Category getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Category category) {
         this.category = category;
+    }
+
+    @Override
+    public String toString() {
+        return "Item{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", quantity=" + quantity +
+                ", category=" + category +
+                '}';
     }
 }

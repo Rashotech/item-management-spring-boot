@@ -31,20 +31,18 @@
                     <h3 class="my-6">Edit Item</h3>
                     <form role="form" th:action="@{/item/update/{id}(id = ${item.id})}" method="post">
                         <div class="mb-3">
-                            <label for="itemName" class="form-label">Item Name</label>
-                            <input type="text" class="form-control" id="itemName" th:value="${item.name}" name="itemName" required>
+                            <label for="name" class="form-label">Item Name</label>
+                            <input type="text" class="form-control" id="name" th:value="${item.name}" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="itemQuantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="itemQuantity" th:value="${item.quantity}"  name="itemQuantity" required>
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input type="number" class="form-control" id="quantity" th:value="${item.quantity}"  name="quantity" required>
                         </div>
                         <div class="mb-3">
-                            <label for="itemCategory" class="form-label">Item Category</label>
-                            <select class="form-select" id="itemCategory" name="itemCategory" aria-label="Select Item Category">
-                                <option th:value="${item.category}" selected></option>
-                                <option value="1">One</option>
-                                <option value="2">Two</option>
-                                <option value="3">Three</option>
+                            <label for="category" class="form-label">Item Category</label>
+                            <select class="form-select" id="category" name="category" aria-label="Select Item Category">
+                                <option th:each="category : ${categories}" th:object="${category}" th:value="${category.id}"
+                                        th:text="${category.name}" th:selected="${category==item.category}"></option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
