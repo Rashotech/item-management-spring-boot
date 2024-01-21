@@ -18,12 +18,18 @@ public class ItemManagementApplication {
     @Bean
     CommandLineRunner commandLineRunner(CategoryRepository categoryRepository) {
         return args -> {
-            categoryRepository.saveAll(List.of(
-                    new Category("Electronic"),
-                    new Category("Fashion"),
-                    new Category("Medical"),
-                    new Category("Automobile")
-            ));
+            // Check if categories already exist
+            if (categoryRepository.count() == 0) {
+                // Save new categories only if none exist
+                categoryRepository.saveAll(List.of(
+                        new Category("Electronic"),
+                        new Category("Fashion"),
+                        new Category("Medical"),
+                        new Category("Automobile")
+                ));
+            } else {
+                System.out.println("Categories already exist. Skipping initialization.");
+            }
         };
     }
 }
