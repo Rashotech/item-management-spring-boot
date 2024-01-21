@@ -24,6 +24,8 @@ public class ItemController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView landingPage() {
         ModelAndView modelAndView = new ModelAndView();
+        List<Item> itemList = itemService.getAllItems();
+        modelAndView.addObject("items", itemList);
         modelAndView.setViewName("items/homePage");
         return modelAndView;
     }
@@ -54,12 +56,12 @@ public class ItemController {
             @RequestParam(value = "itemCategory") String category
     ) {
         itemService.createItem(name, quantity, category);
-        String redirectUrl = "/inventory";
+        String redirectUrl = "/";
         return new ModelAndView(new RedirectView(redirectUrl));
     }
 
     // display single item
-    @RequestMapping(value = "/view", method = RequestMethod.GET)
+    @RequestMapping(value = "/item/view", method = RequestMethod.GET)
     public ModelAndView viewSingleItem(@RequestParam(value = "id") Long id) {
         Item item = itemService.getOneItem(id);
         ModelAndView modelAndView = new ModelAndView();
@@ -69,7 +71,7 @@ public class ItemController {
     }
 
     // editing functionality and display editing page
-    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/item/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editSingleItem(@PathVariable(value = "id") Long id) {
         Item item = itemService.getOneItem(id);
         ModelAndView modelAndView = new ModelAndView();
@@ -79,25 +81,25 @@ public class ItemController {
     }
 
     // update item data and save to Repo
-    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/item/update/{id}", method = RequestMethod.POST)
     public ModelAndView updateItemData(Item item, @PathVariable(value = "id") Long id) {
         item.setId(id);
         itemService.updateItem(item);
-        String redirectUrl = "/inventory";
+        String redirectUrl = "/";
         return new ModelAndView(new RedirectView(redirectUrl));
     }
 
 
     // delete functionality
-    @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/item/delete/{id}", method = RequestMethod.GET)
     public ModelAndView deleteItemById(@PathVariable("id") Long id) {
         Item itemToDelete= itemService.getOneItem(id);
         ModelAndView modelAndView = new ModelAndView();
         if (itemToDelete != null) {
             itemService.deleteItemById(id);
             List<Item> itemList = itemService.getAllItems();
-            modelAndView.addObject("item", itemList);
-            String redirectUrl = "/inventory";
+            modelAndView.addObject("items", itemList);
+            String redirectUrl = "/";
             return new ModelAndView(new RedirectView(redirectUrl));
         }
         return modelAndView;
