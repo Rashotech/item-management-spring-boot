@@ -1,10 +1,9 @@
-package com.example.itemManagement.controllers;
+package com.springbootproject.itemManagement.controllers;
 
-import com.example.itemManagement.entity.Item;
-import com.example.itemManagement.services.ItemService;
+import com.springbootproject.itemManagement.entity.Item;
+import com.springbootproject.itemManagement.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +24,7 @@ public class ItemController {
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView landingPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("itemViews/landingPage");
+        modelAndView.setViewName("items/landingPage");
         return modelAndView;
     }
 
@@ -33,7 +32,7 @@ public class ItemController {
     @RequestMapping(value = "/home", method = RequestMethod.GET)
     public ModelAndView homePage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("itemViews/homePage");
+        modelAndView.setViewName("items/homePage");
         return modelAndView;
     }
 
@@ -41,7 +40,7 @@ public class ItemController {
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public ModelAndView registerItemPage() {
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("itemViews/registerItemPage");
+        modelAndView.setViewName("items/registerItemPage");
         return modelAndView;
     }
 
@@ -51,7 +50,7 @@ public class ItemController {
         ModelAndView modelAndView = new ModelAndView();
         List<Item> itemList = itemService.getAllItems();
         modelAndView.addObject("item", itemList);
-        modelAndView.setViewName("itemViews/inventoryListPage");
+        modelAndView.setViewName("items/inventoryListPage");
         return modelAndView;
     }
 
@@ -72,7 +71,7 @@ public class ItemController {
     public ModelAndView viewSingleItem(@RequestParam(value = "id") Long id) {
         Item item = itemService.getOneItem(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("itemViews/viewItemPage");
+        modelAndView.setViewName("items/viewItemPage");
         modelAndView.addObject("item", item);
         return modelAndView;
     }
@@ -82,7 +81,7 @@ public class ItemController {
     public ModelAndView editSingleItem(@PathVariable(value = "id") Long id) {
         Item item = itemService.getOneItem(id);
         ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("itemViews/editItemPage");
+        modelAndView.setViewName("items/editItemPage");
         modelAndView.addObject("item", item);
         return modelAndView;
     }

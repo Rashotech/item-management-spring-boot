@@ -1,7 +1,7 @@
-package com.example.itemManagement.services;
+package com.springbootproject.itemManagement.services;
 
-import com.example.itemManagement.entity.Item;
-import com.example.itemManagement.repositories.ItemRepository;
+import com.springbootproject.itemManagement.entity.Item;
+import com.springbootproject.itemManagement.repositories.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

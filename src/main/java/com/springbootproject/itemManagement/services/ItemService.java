@@ -1,6 +1,6 @@
-package com.example.itemManagement.services;
+package com.springbootproject.itemManagement.services;
 
-import com.example.itemManagement.entity.Item;
+import com.springbootproject.itemManagement.entity.Item;
 
 import java.util.List;
 
