@@ -3,10 +3,11 @@
       layout:decorate="~{/items/fragments/layouts/base_layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org/">
->
 <head>
     <meta charset="UTF-8">
     <title>Home</title>
+    <!-- Add jQuery CDN (if not already included) -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 </head>
 <body>
 <section layout:fragment="content">
@@ -37,8 +38,8 @@
                 <a class="card-footer text-white clearfix small z-1" href="#">
                     <span class="float-left">View Categories</span>
                     <span class="float-right">
-                  <i class="fa fa-angle-right"></i>
-                </span>
+                      <i class="fa fa-angle-right"></i>
+                    </span>
                 </a>
             </div>
         </div>
@@ -55,6 +56,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+
     <!-- Filter by Category Dropdown -->
     <div class="my-3">
         <label for="categoryFilter">Filter by Category:</label>
@@ -64,6 +66,7 @@
             <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
         </select>
     </div>
+
     <!-- Example DataTables Card-->
     <div class="card mb-3">
         <div class="card-header">
@@ -86,7 +89,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="item : ${items}">
+                    <tr th:each="item : ${items}" class="item-row">
                         <td th:text="${item.name}"></td>
                         <td th:text="${item.quantity}"></td>
                         <td th:text="${item?.category?.name ?: 'UnCategorized'}"></td>
@@ -101,6 +104,25 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function () {
+            // Handle category filter change
+            $('#categoryFilter').change(function () {
+                var selectedCategoryId = $(this).val();
+
+                // Filter items based on the selected category
+                $('.item-row').each(function () {
+                    var itemCategory = $(this).find('td:nth-child(3)').text();
+                    if (selectedCategoryId === '' || itemCategory === selectedCategoryId) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
 </section>
 </body>
 </html>

@@ -48,7 +48,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public List<Category> getItemsByCategory(Category category) {
-        return itemRepository.findByCategory(category);
+    public List<Item> getItemsByCategory(Category category) {
+        return itemRepository.findItemsByCategory(category);
     }
 }

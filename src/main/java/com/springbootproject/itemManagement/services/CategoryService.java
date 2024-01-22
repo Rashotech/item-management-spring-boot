@@ -11,5 +11,5 @@ public interface CategoryService {
     public Optional<Category> getOneCategory(Long categoryId);
     public void updateCategory(Long id, Category category);
     public void deleteCategoryById(Long id);
-    public Category getCategoryByName(String categoryName);
+    public Optional<Category> getCategoryByName(String categoryName);
 }

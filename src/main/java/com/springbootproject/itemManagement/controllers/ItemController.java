@@ -24,16 +24,12 @@ public class ItemController {
     private CategoryService categoryService;
 
     // filter functionality
-    @GetMapping("/category/{categoryId}")
-    public String getItemsByCategory(@PathVariable String categoryName) {
-        ModelAndView modelAndView = new ModelAndView();
-        Category gottenCategory = categoryService.getCategoryByName(categoryName);
-        List<Category> itemsByCategory = itemService.getItemsByCategory(gottenCategory);
-        // Add the items and category information to the model
-        modelAndView.addObject("items", itemsByCategory);
-        modelAndView.addObject("selectedCategoryId", categoryName);
-        return "items/homePage";
-    }
+//    @GetMapping("/category/{categoryId}")
+//    @ResponseBody // Add this annotation to indicate that the return value should be serialized as JSON
+//    public List<Item> getItemsByCategory(@RequestParam String categoryName) {
+//        Category gottenCategory = categoryService.getCategoryByName(categoryName);
+//        return itemService.getItemsByCategory(gottenCategory);
+//    }
 
     // display landing page
     @RequestMapping(value = "", method = RequestMethod.GET)
