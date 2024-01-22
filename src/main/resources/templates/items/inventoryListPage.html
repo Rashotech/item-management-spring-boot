@@ -2,31 +2,52 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Edit Item</title>
 </head>
 <body>
-<a th:href="@{/home}"> Back to Home</a>
-<h1>Here's your Inventory</h1>
-<p><a th:href="@{/item/create}">Add item</a></p>
-<div>
-    <table border="1">
-        <tr>
-            <th>Item Name</th>
-            <th>Item Quantity</th>
-            <th>Item Category</th>
-            <th>Item Actions</th>
-        </tr>
-        <tr th:each="item : ${item}">
-            <td th:text="${item.name}">Flip 5</td>
-            <td th:text="${item.quantity}">197.88</td>
-            <td th:text="${item.category}">JBL Speakers. Best of its kind.<i> This is sample data</i></td>
-            <td>
-                <a th:href="@{/view(id=${item.id})}">View</a> |
-                <a th:href="@{/edit/{id}(id=${item.id})}">Edit</a> |
-                <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
-            </td>
-        </tr>
-    </table>
-</div>
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{/items/fragments/layouts/base_layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org/">
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Create Item</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Create Item</li>
+        </ol>
+    </nav>
+
+    <a th:href="@{/home}"> Back to Home</a>
+    <h1>Here's your Inventory</h1>
+    <p><a th:href="@{/item/create}">Add item</a></p>
+    <div>
+        <table border="1">
+            <tr>
+                <th>Item Name</th>
+                <th>Item Quantity</th>
+                <th>Item Category</th>
+                <th>Item Actions</th>
+            </tr>
+            <tr th:each="item : ${item}">
+                <td th:text="${item.name}">Flip 5</td>
+                <td th:text="${item.quantity}">197.88</td>
+                <td th:text="${item.category}">JBL Speakers. Best of its kind.<i> This is sample data</i></td>
+                <td>
+                    <a th:href="@{/view(id=${item.id})}">View</a> |
+                    <a th:href="@{/edit/{id}(id=${item.id})}">Edit</a> |
+                    <a th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+</section>
 </body>
 </html>
