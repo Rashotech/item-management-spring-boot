@@ -5,19 +5,19 @@
     <title>Title</title>
 </head>
 <body>
-<a th:href="@{/home}"> Back to Home</a>
+<a th:href="@{/}"> Back to Home</a>
 <h1>Item Encyclopedia</h1>
 <br>
 <h3>ITEM NAME: <span th:text="${item.name}"></span></h3>
 <div>ITEM ID: <span th:text="${item.id}"></span></div>
-<div>ITEM PRICE: <span th:text="${item.price}"></span></div>
-<div>ITEM DESCRIPTION: <span th:text="${item.description}"></span></div>
+<div>ITEM Quantity: <span th:text="${item.quantity}"></span></div>
+<div>ITEM Category: <span  th:text="${item?.category?.name ?: 'UnCategorized'}"></span></div>
 <br>
 <br>
 <div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur debitis explicabo facilis laboriosam nihil
     perferendis quas sit voluptatibus voluptatum.
 </div>
 <br>
-<a th:href="@{/inventory}">Back to Inventory</a>
+<a th:href="@{/}">Back to Inventory</a>
 </body>
 </html>

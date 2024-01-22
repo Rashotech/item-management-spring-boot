@@ -13,14 +13,14 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Create Item</title>
+    <title>Edit Item</title>
 </head>
 <body>
 <section layout:fragment="content">
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Item</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Item</li>
         </ol>
     </nav>
 
@@ -41,8 +41,9 @@
                         <div class="mb-3">
                             <label for="category" class="form-label">Item Category</label>
                             <select class="form-select" id="category" name="category" aria-label="Select Item Category">
+                                <option th:if="${item?.category?.name == null}" selected>Select Item Category</option>
                                 <option th:each="category : ${categories}" th:object="${category}" th:value="${category.id}"
-                                        th:text="${category.name}" th:selected="${category==item.category}"></option>
+                                        th:text="${category.name}" th:selected="${category==item?.category}"></option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

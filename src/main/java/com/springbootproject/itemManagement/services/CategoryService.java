@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface CategoryService {
-    public void createCategory(String name);
+    public void createCategory(String name, String description);
     List<Category> getAllCategories();
     public Optional<Category> getOneCategory(Long id);
     public void updateCategory(Long id, Category category);
