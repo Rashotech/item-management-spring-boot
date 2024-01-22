@@ -45,7 +45,7 @@
     </div>
 
     <div class="my-3">
-        <a class="btn btn-primary"th:href="@{/item/create}" role="button">Create Inventory Item</a>
+        <a class="btn btn-primary" th:href="@{/item/create}" role="button">Create Inventory Item</a>
     </div>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
@@ -54,6 +54,15 @@
         <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
+    </div>
+    <!-- Filter by Category Dropdown -->
+    <div class="my-3">
+        <label for="categoryFilter">Filter by Category:</label>
+        <select id="categoryFilter" class="form-control">
+            <option value="">All Categories</option>
+            <!-- Add options dynamically based on your categories -->
+            <option th:each="category : ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+        </select>
     </div>
     <!-- Example DataTables Card-->
     <div class="card mb-3">
@@ -77,16 +86,16 @@
                     </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="item : ${items}">
-                            <td th:text="${item.name}"></td>
-                            <td th:text="${item.quantity}"></td>
-                            <td th:text="${item?.category?.name ?: 'UnCategorized'}"></td>
-                            <td>
-                                <a th:href="@{/item/view(id=${item.id})}">View</a> |
-                                <a th:href="@{/item/edit/{id}(id=${item.id})}">Edit</a> |
-                                <a th:href="@{/item/delete/{id}(id=${item.id})}">Delete</a>
-                            </td>
-                        </tr>
+                    <tr th:each="item : ${items}">
+                        <td th:text="${item.name}"></td>
+                        <td th:text="${item.quantity}"></td>
+                        <td th:text="${item?.category?.name ?: 'UnCategorized'}"></td>
+                        <td>
+                            <a th:href="@{/item/view(id=${item.id})}">View</a> |
+                            <a th:href="@{/item/edit/{id}(id=${item.id})}">Edit</a> |
+                            <a th:href="@{/item/delete/{id}(id=${item.id})}">Delete</a>
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>

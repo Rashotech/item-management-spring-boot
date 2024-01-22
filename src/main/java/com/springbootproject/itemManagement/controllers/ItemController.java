@@ -1,5 +1,6 @@
 package com.springbootproject.itemManagement.controllers;
 
+import ch.qos.logback.core.model.Model;
 import com.springbootproject.itemManagement.models.Category;
 import com.springbootproject.itemManagement.models.Item;
 import com.springbootproject.itemManagement.services.CategoryService;
@@ -22,12 +23,26 @@ public class ItemController {
     @Autowired
     private CategoryService categoryService;
 
+    // filter functionality
+    @GetMapping("/category/{categoryId}")
+    public String getItemsByCategory(@PathVariable String categoryName) {
+        ModelAndView modelAndView = new ModelAndView();
+        Category gottenCategory = categoryService.getCategoryByName(categoryName);
+        List<Category> itemsByCategory = itemService.getItemsByCategory(gottenCategory);
+        // Add the items and category information to the model
+        modelAndView.addObject("items", itemsByCategory);
+        modelAndView.addObject("selectedCategoryId", categoryName);
+        return "items/homePage";
+    }
+
     // display landing page
     @RequestMapping(value = "", method = RequestMethod.GET)
     public ModelAndView landingPage() {
         ModelAndView modelAndView = new ModelAndView();
         List<Item> itemList = itemService.getAllItems();
         modelAndView.addObject("items", itemList);
+        List<Category> categories = categoryService.getAllCategories();
+        modelAndView.addObject("categories", categories);
         modelAndView.setViewName("items/homePage");
         return modelAndView;
     }
