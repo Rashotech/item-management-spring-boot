@@ -47,6 +47,14 @@
     <div class="my-3">
         <a class="btn btn-primary"th:href="@{/item/create}" role="button">Create Inventory Item</a>
     </div>
+
+    <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
+         role="alert">
+        [[${message}]]
+        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
     <!-- Example DataTables Card-->
     <div class="card mb-3">
         <div class="card-header">
@@ -72,7 +80,7 @@
                         <tr th:each="item : ${items}">
                             <td th:text="${item.name}"></td>
                             <td th:text="${item.quantity}"></td>
-                            <td th:text="${item.category.name}"></td>
+                            <td th:text="${item?.category?.name ?: 'UnCategorized'}"></td>
                             <td>
                                 <a th:href="@{/item/view(id=${item.id})}">View</a> |
                                 <a th:href="@{/item/edit/{id}(id=${item.id})}">Edit</a> |
