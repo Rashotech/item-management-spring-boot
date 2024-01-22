@@ -46,4 +46,17 @@ public class ItemServiceImpl implements ItemService {
     public void deleteItemById(Long id) {
         itemRepository.deleteById(id);
     }
+
+    @Override
+    public int totalQuantity() {
+        List<Item> items = itemRepository.findAll();
+        return items.stream().mapToInt(Item::getQuantity).sum();
+
+    }
+
+    @Override
+    public int numberOfItems() {
+        List<Item> items = itemRepository.findAll();
+        return getAllItems().size();
+    }
 }

@@ -28,6 +28,12 @@ public class ItemController {
     public ModelAndView landingPage() {
         ModelAndView modelAndView = new ModelAndView();
         List<Item> itemList = itemService.getAllItems();
+        int totalQuantity = itemService.totalQuantity();
+        int numberOfItems = itemService.numberOfItems();
+        System.out.println(totalQuantity);
+        System.out.println(numberOfItems);
+        modelAndView.addObject("numberOfItems", numberOfItems);
+        modelAndView.addObject("totalQuantity", totalQuantity);
         modelAndView.addObject("items", itemList);
         modelAndView.setViewName("items/homePage");
         return modelAndView;
@@ -109,4 +115,6 @@ public class ItemController {
         }
         return modelAndView;
     }
+
+
 }

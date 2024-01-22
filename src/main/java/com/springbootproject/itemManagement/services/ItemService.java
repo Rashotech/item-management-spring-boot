@@ -11,4 +11,7 @@ public interface ItemService {
     public Item getOneItem(Long id);
     public void updateItem(Long id, Item item);
     public void deleteItemById(Long id);
+
+    public int totalQuantity();
+    public int numberOfItems();
 }
