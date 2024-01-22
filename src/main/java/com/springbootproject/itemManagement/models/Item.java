@@ -17,7 +17,7 @@ public class Item {
     private Integer quantity;
 
     @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = true)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Category category;
 

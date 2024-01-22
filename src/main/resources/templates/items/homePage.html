@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en"
-      layout:decorate="~{/items/fragments/layouts/base_layout}"
+      layout:decorate="~{/fragments/layouts/base_layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       xmlns:th="http://www.thymeleaf.org/">
 >
@@ -18,7 +18,7 @@
                     <div class="card-body-icon">
                         <i class="fa fa-fw fa-inbox fa-2x"></i>
                     </div>
-                    <div class="mr-5 text-md mt-2"><h1>200</h1></div>
+                    <div class="mr-5 text-md mt-2" id="numberOfItems"><h1 th:text="${numberOfItems}"></h1></div>
                     <div class="mr-5 text-md">Items</div>
                 </div>
             </div>
