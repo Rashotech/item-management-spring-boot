@@ -48,15 +48,7 @@ public class ItemServiceImpl implements ItemService {
     }
 
     @Override
-    public int totalQuantity() {
-        List<Item> items = itemRepository.findAll();
-        return items.stream().mapToInt(Item::getQuantity).sum();
-
-    }
-
-    @Override
-    public int numberOfItems() {
-        List<Item> items = itemRepository.findAll();
+    public int getTotalNumberOfItems() {
         return getAllItems().size();
     }
 }

@@ -16,10 +16,8 @@ public class Item {
 
     private Integer quantity;
 
-    private Integer totalQuantity;
-
-    @ManyToOne
-    @JoinColumn(name = "category_id", referencedColumnName = "id", nullable = true)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
     @OnDelete(action = OnDeleteAction.SET_NULL)
     private Category category;
 
@@ -51,8 +49,6 @@ public class Item {
     public Integer getQuantity() {
         return quantity;
     }
-
-    public Integer getTotalQuantity() {return totalQuantity;}
 
     public void setQuantity(Integer quantity) {
         this.quantity = quantity;
