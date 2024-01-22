@@ -6,7 +6,6 @@ import com.springbootproject.itemManagement.services.CategoryService;
 import com.springbootproject.itemManagement.services.ItemService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -43,16 +42,6 @@ public class ItemController {
         return modelAndView;
     }
 
-    // display inventory page
-    @RequestMapping(value = "/inventory", method = RequestMethod.GET)
-    public ModelAndView inventoryListPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        List<Item> itemList = itemService.getAllItems();
-        modelAndView.addObject("item", itemList);
-        modelAndView.setViewName("items/inventoryListPage");
-        return modelAndView;
-    }
-
     // registered items
     @RequestMapping(value = "/item/create", method = RequestMethod.POST)
     public ModelAndView register(
@@ -60,7 +49,6 @@ public class ItemController {
             @RequestParam(value = "itemQuantity") Integer quantity,
             @RequestParam(value = "itemCategory") Category category
     ) {
-
         itemService.createItem(name, quantity, category);
         String redirectUrl = "/";
         return new ModelAndView(new RedirectView(redirectUrl));
@@ -97,16 +85,8 @@ public class ItemController {
 
     // delete functionality
     @RequestMapping(value = "/item/delete/{id}", method = RequestMethod.GET)
-    public ModelAndView deleteItemById(@PathVariable("id") Long id) {
-        Item itemToDelete= itemService.getOneItem(id);
-        ModelAndView modelAndView = new ModelAndView();
-        if (itemToDelete != null) {
-            itemService.deleteItemById(id);
-            List<Item> itemList = itemService.getAllItems();
-            modelAndView.addObject("items", itemList);
-            String redirectUrl = "/";
-            return new ModelAndView(new RedirectView(redirectUrl));
-        }
-        return modelAndView;
+    public String deleteItemById(@PathVariable("id") Long id) {
+        itemService.deleteItemById(id);
+        return "redirect:/";
     }
 }

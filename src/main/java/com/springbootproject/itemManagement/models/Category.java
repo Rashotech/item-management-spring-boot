@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
+@Table(name = "categories")
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,14 +13,17 @@ public class Category {
 
     private String name;
 
+    private String description;
+
     @OneToMany(mappedBy = "category")
     private List<Item> items;
 
     public Category() {
     }
 
-    public Category(String name) {
+    public Category(String name, String description) {
         this.name = name;
+        this.description = description;
     }
 
     public Long getId() {

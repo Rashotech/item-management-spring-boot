@@ -41,8 +41,9 @@
                         <div class="mb-3">
                             <label for="category" class="form-label">Item Category</label>
                             <select class="form-select" id="category" name="category" aria-label="Select Item Category">
+                                <option th:if="${item?.category?.name == null}" selected>Select Item Category</option>
                                 <option th:each="category : ${categories}" th:object="${category}" th:value="${category.id}"
-                                        th:text="${category.name}" th:selected="${category==item.category}"></option>
+                                        th:text="${category.name}" th:selected="${category==item?.category}"></option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
