@@ -28,7 +28,8 @@
         <div class="row">
             <div class="col-lg-7 mx-auto">
                 <div class="bg-white rounded-lg shadow-sm p-5">
-                    <h3 class="my-6">Edit Item</h3>
+                    <h1 class="my-6">Product details</h1>
+                    <br>
                     <form role="form" th:action="@{/item/update/{id}(id = ${item.id})}" method="post">
                         <div class="mb-3">
                             <label for="name" class="form-label">Item Name</label>

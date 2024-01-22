@@ -2,22 +2,46 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>View Item</title>
 </head>
 <body>
-<a th:href="@{/}"> Back to Home</a>
-<h1>Item Encyclopedia</h1>
-<br>
-<h3>ITEM NAME: <span th:text="${item.name}"></span></h3>
-<div>ITEM ID: <span th:text="${item.id}"></span></div>
-<div>ITEM Quantity: <span th:text="${item.quantity}"></span></div>
-<div>ITEM Category: <span  th:text="${item?.category?.name ?: 'UnCategorized'}"></span></div>
-<br>
-<br>
-<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. A consequatur debitis explicabo facilis laboriosam nihil
-    perferendis quas sit voluptatibus voluptatum.
-</div>
-<br>
-<a th:href="@{/}">Back to Inventory</a>
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{/items/fragments/layouts/base_layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org/">
+>
+<head>
+    <meta charset="UTF-8">
+    <title>View Item</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">View Item</li>
+        </ol>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-7 mx-auto">
+                <div class="bg-white rounded-lg shadow-sm p-5">
+                    <h1>Product details</h1>
+                    <br>
+                    <div><b>NAME: </b><span th:text="${item.name}"></span></div>
+                    <br>
+                    <div><b>QUANTITY: </b><span th:text="${item.quantity}"></span></div>
+                    <br>
+                    <div><b>CATEGORY: </b><span th:text="${item.category.name}"></span></div>
+                    <br>
+                    <br>
+                    <a th:href="@{/}" class="btn btn-primary">Return Home</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 </body>
 </html>
