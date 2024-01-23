@@ -71,21 +71,21 @@
                 >
                     <thead>
                     <tr>
-                        <th>Item Name</th>
-                        <th>Quantity</th>
-                        <th>Category</th>
-                        <th>Actions</th>
+                        <th class="text-center">Item Name</th>
+                        <th class="text-center">Quantity</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">Actions</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr th:each="item : ${items}">
-                        <td th:text="${item.name}"></td>
-                        <td th:text="${item.quantity}"></td>
-                        <td th:text="${item?.category?.name ?: 'UnCategorized'}"></td>
-                        <td>
+                        <td class="text-center" th:text="${item.name}"></td>
+                        <td class="text-center" th:text="${item.quantity}"></td>
+                        <td class="text-center" th:text="${item?.category?.name ?: 'UnCategorized'}"></td>
+                        <td class="text-center">
                             <a class="btn btn-primary" th:href="@{/item/view(id=${item.id})}" role="button">View</a>
                             <a class="btn btn-warning" th:href="@{/item/edit/{id}(id=${item.id})}" role="button">Edit</a>
-                            <a th:href="@{/item/delete/{id}(id=${item.id})}" class="btn btn-danger"><i class="fa fa-trash"></i>Delete</a>
+                            <a th:href="@{/item/delete/{id}(id=${item.id})}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                         </td>
                     </tr>
                     </tbody>
