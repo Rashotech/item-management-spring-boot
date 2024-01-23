@@ -91,13 +91,4 @@ public class ItemController {
         itemService.deleteItemById(id);
         return "redirect:/";
     }
-
-    @RequestMapping(value = "/item/view_categories", method = RequestMethod.GET)
-    public ModelAndView ViewCategoryPage() {
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("items/categories/viewCategories");
-        return modelAndView;
-    }
-
-
 }

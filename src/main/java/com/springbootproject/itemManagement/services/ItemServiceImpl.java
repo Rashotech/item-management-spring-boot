@@ -3,7 +3,6 @@ package com.springbootproject.itemManagement.services;
 import com.springbootproject.itemManagement.models.Category;
 import com.springbootproject.itemManagement.models.Item;
 import com.springbootproject.itemManagement.repositories.ItemRepository;
-import jdk.jfr.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
