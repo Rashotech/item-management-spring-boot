@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Item</title>
+</head>
+<body>
+<!DOCTYPE html>
 <html lang="en"
       layout:decorate="~{/fragments/layouts/base_layout}"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
@@ -6,7 +13,7 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>Create Category</title>
+    <title>Edit Item</title>
 </head>
 <body>
 <section layout:fragment="content">
@@ -14,7 +21,7 @@
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
             <li class="breadcrumb-item"><a th:href="@{/categories}">Categories</a></li>
-            <li class="breadcrumb-item active" aria-current="page">Create Category</li>
+            <li class="breadcrumb-item active" aria-current="page">Edit Category</li>
         </ol>
     </nav>
 
@@ -22,15 +29,16 @@
         <div class="row">
             <div class="col-lg-7 mx-auto">
                 <div class="bg-white rounded-lg shadow-sm p-5">
-                    <h3 class="my-6">Create Category</h3>
-                    <form role="form" th:action="@{/categories/create}" method="post">
+                    <h1 class="my-6">Edit Category</h1>
+                    <br>
+                    <form role="form" th:action="@{/categories/edit/{id}(id = ${category.id})}"  method="post">
                         <div class="mb-3">
-                            <label for="categoryName" class="form-label">Category Name</label>
-                            <input type="text" class="form-control" id="categoryName"  name="categoryName" required>
+                            <label for="name" class="form-label">Category Name</label>
+                            <input type="text" class="form-control" id="name" th:value="${category.name}" name="name" required>
                         </div>
                         <div class="mb-3">
-                            <label for="categoryDescription" class="form-label">Category Description</label>
-                            <input type="text" class="form-control" id="categoryDescription" name="categoryDescription" required>
+                            <label for="description" class="form-label">Category Description</label>
+                            <input type="text" class="form-control" id="description" th:value="${category.description}"  name="description" required>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
