@@ -11,4 +11,5 @@ public interface CategoryService {
     public Optional<Category> getOneCategory(Long id);
     public void updateCategory(Long id, Category category);
     public void deleteCategoryById(Long id);
+    public Integer numberOfCategories();
 }
