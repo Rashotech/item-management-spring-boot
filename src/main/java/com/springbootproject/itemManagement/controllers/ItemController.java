@@ -91,6 +91,4 @@ public class ItemController {
         itemService.deleteItemById(id);
         return "redirect:/";
     }
-
-
 }
