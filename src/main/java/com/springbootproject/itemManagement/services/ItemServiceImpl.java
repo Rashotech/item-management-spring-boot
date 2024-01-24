@@ -16,8 +16,7 @@ public class ItemServiceImpl implements ItemService {
 
     // create item and save into Repository connected to the database
     @Override
-    public void createItem(String name, Integer quantity, Category category) {
-        Item item = new Item(name, quantity, category);
+    public void createItem(Item item) {
         itemRepository.save(item);
     }
 
