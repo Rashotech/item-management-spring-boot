@@ -11,9 +11,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
+
+import static java.util.Objects.nonNull;
 
 
 @Controller
@@ -27,12 +28,21 @@ public class ItemController {
 
     // display landing page
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView landingPage() {
+    public ModelAndView landingPage(@RequestParam(value = "categoryId", required = false) Long categoryId) {
+        List<Item> itemList;
         ModelAndView modelAndView = new ModelAndView();
-        List<Item> itemList = itemService.getAllItems();
-        int numberOfItems = itemService.getTotalNumberOfItems();
+
+        if(nonNull(categoryId)) {
+            modelAndView.addObject("categoryId", categoryId);
+            itemList = itemService.getItemsByCategory(categoryId);
+        } else {
+            itemList = itemService.getAllItems();
+        }
+
         int totalNoOfCategories = categoryService.getTotalCategories();
-        modelAndView.addObject("numberOfItems", numberOfItems);
+        List<Category> categories = categoryService.getAllCategories();
+        modelAndView.addObject("categories", categories);
+        modelAndView.addObject("numberOfItems", categories.size());
         modelAndView.addObject("items", itemList);
         modelAndView.addObject("numberOfCategories", totalNoOfCategories);
         modelAndView.setViewName("items/homePage");

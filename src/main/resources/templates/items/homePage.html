@@ -44,8 +44,20 @@
         </div>
     </div>
 
-    <div class="my-3">
-        <a class="btn btn-primary"th:href="@{/item/create}" role="button">Create Inventory Item</a>
+    <div class="row d-flex justify-content-between align-items-center my-3">
+        <div class="col-auto">
+            <a class="btn btn-primary" th:href="@{/item/create}" role="button">Create Inventory Item</a>
+        </div>
+
+            <div class="col-sm-4">
+                <label for="category" class="control-label">Filter Items By Category</label>
+                <select class="form-control" name="category" id="category" onchange="handleCategoryChange()" style="height: 40px;">
+                    <option value="">- Select Category -</option>
+                    <option value="all" th:if="${categoryId != null}">All Categories</option>
+                    <option th:each="category : ${categories}" th:object="${category}" th:value="${category.id}"
+                            th:text="${category.name}" th:selected="${category.id==categoryId}">Select category</option>
+                </select>
+            </div>
     </div>
 
     <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
@@ -96,6 +108,36 @@
             </div>
         </div>
     </div>
+    <script>
+    function handleCategoryChange() {
+        // Get the selected category value
+        var selectedCategoryId = document.getElementById("category").value;
+
+         if (selectedCategoryId === "all") {
+            // If no category is selected, redirect to the main URL without any parameters
+            window.location.href = window.location.origin + window.location.pathname;
+            return;
+        }
+
+        // Get the current page URL
+        var currentUrl = window.location.href;
+
+         // Remove any existing categoryId parameter
+        currentUrl = currentUrl.replace(/([?&])categoryId=\d+/i, '$1');
+
+        // Check if the URL already has a query parameter
+        var separator = currentUrl.includes("?") ? "" : "?";
+
+        // Update the URL with the new query parameter
+        var newUrl = currentUrl + separator + "categoryId=" + selectedCategoryId;
+
+        // Navigate to the new URL
+        window.location.href = newUrl;
+    }
+
+    // Attach the function to the change event of the category dropdown
+    document.getElementById("category").addEventListener("change", handleCategoryChange);
+</script>
 </section>
 </body>
 </html>
