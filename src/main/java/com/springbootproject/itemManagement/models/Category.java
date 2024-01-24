@@ -1,6 +1,7 @@
 package com.springbootproject.itemManagement.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 
 import java.util.List;
 
@@ -11,8 +12,10 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "Category name required")
     private String name;
 
+    @NotBlank(message = "Category description required")
     private String description;
 
     @OneToMany(mappedBy = "category")

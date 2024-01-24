@@ -22,20 +22,36 @@
             <div class="col-lg-7 mx-auto">
                 <div class="bg-white rounded-lg shadow-sm p-5">
                     <h3 class="my-6">Create Item</h3>
-                    <form role="form" th:action="@{/item/create}" method="post">
+                    <form role="form" th:object="${item}" th:action="@{/item/create}" method="post">
                         <div class="mb-3">
-                            <label for="itemName" class="form-label">Item Name</label>
-                            <input type="text" class="form-control" id="itemName"  name="itemName" required>
+                            <label for="name" class="form-label">Item Name</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    th:classappend="${#fields.hasErrors('name')?'is-invalid':''}"
+                                    th:field="*{name}"
+                                    required
+                            >
+                            <div th:if="${#fields.hasErrors('name')}" class="invalid-feedback" th:errors="*{name}"></div>
                         </div>
                         <div class="mb-3">
-                            <label for="itemQuantity" class="form-label">Quantity</label>
-                            <input type="number" class="form-control" id="itemQuantity" name="itemQuantity" required>
+                            <label for="quantity" class="form-label">Quantity</label>
+                            <input
+                                    type="number"
+                                    class="form-control"
+                                    id="quantity"
+                                    name="quantity" th:field="*{quantity}" required
+                                    th:classappend="${#fields.hasErrors('quantity')?'is-invalid':''}"
+                            >
+                            <div id="quantityFeedback" th:if="${#fields.hasErrors('quantity')}" class="invalid-feedback" th:errors="*{quantity}">Error</div>
                         </div>
                         <div class="mb-3">
                             <label for="itemCategory" class="form-label">Item Category</label>
-                            <select class="form-select" id="itemCategory" name="itemCategory" aria-label="Select Item Category">
-                                <option selected>Select category</option>
-                                <option th:each="category : ${categories}" th:object="${category}" th:value="${category.id}" th:text="${category.name}"></option>
+                            <select class="form-select" id="itemCategory" name="category" aria-label="Select Item Category">
+                                <option disabled value="" selected>Select category</option>
+                                <option th:each="category : ${categories}" th:object="${category}" th:value="${category.id}" th:text="${category.name}">Select category</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

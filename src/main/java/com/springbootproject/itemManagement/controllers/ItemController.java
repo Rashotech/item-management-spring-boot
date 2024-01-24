@@ -4,8 +4,11 @@ import com.springbootproject.itemManagement.models.Category;
 import com.springbootproject.itemManagement.models.Item;
 import com.springbootproject.itemManagement.services.CategoryService;
 import com.springbootproject.itemManagement.services.ItemService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -34,26 +37,22 @@ public class ItemController {
         return modelAndView;
     }
 
-    // Display Item Create page
     @RequestMapping(value = "/item/create", method = RequestMethod.GET)
-    public ModelAndView registerItemPage() {
+    public String createItemPage(Model model, Item item) {
         List<Category> categories = categoryService.getAllCategories();
-        ModelAndView modelAndView = new ModelAndView();
-        modelAndView.setViewName("items/createItemPage");
-        modelAndView.addObject("categories", categories);
-        return modelAndView;
+        model.addAttribute("categories", categories);
+        return "items/createItemPage";
     }
 
-    // registered items
     @RequestMapping(value = "/item/create", method = RequestMethod.POST)
-    public ModelAndView register(
-            @RequestParam(value = "itemName") String name,
-            @RequestParam(value = "itemQuantity") Integer quantity,
-            @RequestParam(value = "itemCategory") Category category
-    ) {
-        itemService.createItem(name, quantity, category);
-        String redirectUrl = "/";
-        return new ModelAndView(new RedirectView(redirectUrl));
+    public String createItem(@Valid Item item, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            List<Category> categories = categoryService.getAllCategories();
+            model.addAttribute("categories", categories);
+            return "items/createItemPage";
+        }
+        itemService.createItem(item);
+        return "redirect:/";
     }
 
     // display single item
