@@ -41,7 +41,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Integer numberOfCategories() {
+    public Integer getTotalCategories() {
         List<Category> categories = categoryRepository.findAll();
         return categories.size();
     }
