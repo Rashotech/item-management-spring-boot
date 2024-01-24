@@ -86,7 +86,7 @@ public class ItemController {
     }
 
     // delete functionality
-    @RequestMapping(value = "/item/delete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/item/delete/{id}", method = RequestMethod.POST)
     public String deleteItemById(@PathVariable("id") Long id) {
         itemService.deleteItemById(id);
         return "redirect:/";

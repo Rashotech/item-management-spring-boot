@@ -82,9 +82,13 @@
                             <td th:text="${item.quantity}"></td>
                             <td th:text="${item?.category?.name ?: 'UnCategorized'}"></td>
                             <td>
-                                <a th:href="@{/item/view(id=${item.id})}">View</a> |
-                                <a th:href="@{/item/edit/{id}(id=${item.id})}">Edit</a> |
-                                <a th:href="@{/item/delete/{id}(id=${item.id})}">Delete</a>
+                                <div class="d-flex flex-row">
+                                    <a class="btn btn-primary mr-2 action-item" th:href="@{/item/view(id=${item.id})}">View</i></a>
+                                    <a class="btn btn-success mr-2 action-item" th:href="@{/item/edit/{id}(id=${item.id})}">Edit</i></a>
+                                    <form th:action="@{/item/delete/{id}(id=${item.id})}" method="post">
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </div>
                             </td>
                         </tr>
                     </tbody>

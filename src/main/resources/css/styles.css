@@ -1,3 +1,7 @@
 .wrapper {
   background-color: "#222e3c";
 }
+
+.action-item {
+    margin-right: 10px;
+}

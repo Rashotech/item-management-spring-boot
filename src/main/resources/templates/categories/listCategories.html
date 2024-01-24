@@ -10,6 +10,13 @@
 </head>
 <body>
 <section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+        </ol>
+    </nav>
+
     <div class="my-3">
         <a class="btn btn-primary"th:href="@{/categories/create}" role="button">Create Category</a>
     </div>
@@ -46,9 +53,22 @@
                         <td th:text="${category.name}"></td>
                         <td th:text="${category.description}"></td>
                         <td>
-                            <a th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a> |
-                            <a th:href="@{/categories/delete/{id}(id=${category.id})}">Delete</a>
+                            <div class="d-flex flex-row">
+                                <div class="action-item">
+                                    <a class="btn btn-success" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</i></a>
+                                </div>
+                                <div class="mr-2">
+                                    <form th:action="@{/categories/delete/{id}(id=${category.id})}" method="post">
+                                        <button type="submit" class="btn btn-danger">Delete</i></button>
+                                    </form>
+                                </div>
+                            </div>
                         </td>
+
+<!--                        <td>-->
+<!--                            <a th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a> |-->
+<!--                            <a th:href="@{/categories/delete/{id}(id=${category.id})}">Delete</a>-->
+<!--                        </td>-->
                     </tr>
                     </tbody>
                 </table>
