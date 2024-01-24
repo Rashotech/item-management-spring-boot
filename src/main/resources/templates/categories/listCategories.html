@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en"
+      layout:decorate="~{/fragments/layouts/base_layout}"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org/">
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Categories</title>
+</head>
+<body>
+<section layout:fragment="content">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Categories</li>
+        </ol>
+    </nav>
+
+    <div class="my-3">
+        <a class="btn btn-primary"th:href="@{/categories/create}" role="button">Create Category</a>
+    </div>
+
+    <div th:if="${message != null}" class="alert alert-success alert-dismissible fade show text-center message"
+         role="alert">
+        [[${message}]]
+        <button type="button" class="close btn-sm" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <!-- Example DataTables Card-->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fa fa-table"></i> Categories
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table
+                        class="table table-bordered"
+                        id="dataTable"
+                        width="100%"
+                        cellspacing="0"
+                >
+                    <thead>
+                    <tr>
+                        <th>Category Name</th>
+                        <th>Description</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="category : ${categories}">
+                        <td th:text="${category.name}"></td>
+                        <td th:text="${category.description}"></td>
+                        <td>
+                            <div class="d-flex flex-row">
+                                <div class="action-item">
+                                    <a class="btn btn-success" th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</i></a>
+                                </div>
+                                <div class="mr-2">
+                                    <form th:action="@{/categories/delete/{id}(id=${category.id})}" method="post">
+                                        <button type="submit" class="btn btn-danger">Delete</i></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </td>
+
+<!--                        <td>-->
+<!--                            <a th:href="@{/categories/edit/{id}(id=${category.id})}">Edit</a> |-->
+<!--                            <a th:href="@{/categories/delete/{id}(id=${category.id})}">Delete</a>-->
+<!--                        </td>-->
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+</body>
+</html>
