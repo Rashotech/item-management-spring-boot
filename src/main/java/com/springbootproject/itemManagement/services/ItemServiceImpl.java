@@ -14,6 +14,9 @@ public class ItemServiceImpl implements ItemService {
     @Autowired
     private ItemRepository itemRepository;
 
+    @Autowired
+    private CategoryService categoryService;
+
     // create item and save into Repository connected to the database
     @Override
     public void createItem(Item item) {
@@ -49,5 +52,11 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public int getTotalNumberOfItems() {
         return getAllItems().size();
+    }
+
+    @Override
+    public List<Item> getItemsByCategory(Long id) {
+        Category category = categoryService.getOneCategory(id);
+        return itemRepository.findByCategory(category);
     }
 }
