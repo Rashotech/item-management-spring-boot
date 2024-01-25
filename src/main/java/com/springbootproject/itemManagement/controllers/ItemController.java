@@ -39,12 +39,11 @@ public class ItemController {
             itemList = itemService.getAllItems();
         }
 
-        int totalNoOfCategories = categoryService.getTotalCategories();
         List<Category> categories = categoryService.getAllCategories();
         modelAndView.addObject("categories", categories);
-        modelAndView.addObject("numberOfItems", categories.size());
+        modelAndView.addObject("numberOfItems", itemList.size());
         modelAndView.addObject("items", itemList);
-        modelAndView.addObject("numberOfCategories", totalNoOfCategories);
+        modelAndView.addObject("numberOfCategories", categories.size());
         modelAndView.setViewName("items/homePage");
         return modelAndView;
     }
