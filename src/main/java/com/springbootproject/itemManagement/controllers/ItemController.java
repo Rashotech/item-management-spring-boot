@@ -28,7 +28,14 @@ public class ItemController {
 
     // display landing page
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView landingPage(@RequestParam(value = "categoryId", required = false) Long categoryId) {
+    public ModelAndView landingPage() {
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("items/landingPage");
+        return modelAndView;
+    }
+
+    @RequestMapping(value = "/items/home", method = RequestMethod.GET)
+    public ModelAndView homePage(@RequestParam(value = "categoryId", required = false) Long categoryId) {
         List<Item> itemList;
         ModelAndView modelAndView = new ModelAndView();
 
@@ -40,8 +47,9 @@ public class ItemController {
         }
 
         List<Category> categories = categoryService.getAllCategories();
+        int numberOfItems = itemService.getTotalNumberOfItems();
         modelAndView.addObject("categories", categories);
-        modelAndView.addObject("numberOfItems", itemList.size());
+        modelAndView.addObject("numberOfItems", numberOfItems);
         modelAndView.addObject("items", itemList);
         modelAndView.addObject("numberOfCategories", categories.size());
         modelAndView.setViewName("items/homePage");
@@ -63,7 +71,7 @@ public class ItemController {
             return "items/createItemPage";
         }
         itemService.createItem(item);
-        return "redirect:/";
+        return "redirect:/items/home";
     }
 
     // display single item
@@ -92,13 +100,13 @@ public class ItemController {
     @RequestMapping(value = "/item/update/{id}", method = RequestMethod.POST)
     public String updateItemData(Item item, @PathVariable(value = "id") Long id) {
         itemService.updateItem(id, item);
-        return "redirect:/";
+        return "redirect:/items/home";
     }
 
     // delete functionality
     @RequestMapping(value = "/item/delete/{id}", method = RequestMethod.POST)
     public String deleteItemById(@PathVariable("id") Long id) {
         itemService.deleteItemById(id);
-        return "redirect:/";
+        return "redirect:/items/home";
     }
 }
