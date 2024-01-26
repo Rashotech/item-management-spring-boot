@@ -16,9 +16,8 @@ import java.util.List;
 
 import static java.util.Objects.nonNull;
 
-
 @Controller
-@RequestMapping(value = "")
+@RequestMapping(value = "/items")
 public class ItemController {
     @Autowired
     private ItemService itemService;
@@ -26,9 +25,8 @@ public class ItemController {
     @Autowired
     private CategoryService categoryService;
 
-    // display landing page
-    @RequestMapping(value = "", method = RequestMethod.GET)
-    public ModelAndView landingPage(@RequestParam(value = "categoryId", required = false) Long categoryId) {
+    @GetMapping
+    public ModelAndView itemListPage(@RequestParam(value = "categoryId", required = false) Long categoryId) {
         List<Item> itemList;
         ModelAndView modelAndView = new ModelAndView();
 
@@ -40,22 +38,23 @@ public class ItemController {
         }
 
         List<Category> categories = categoryService.getAllCategories();
+        int numberOfItems = itemService.getTotalNumberOfItems();
         modelAndView.addObject("categories", categories);
-        modelAndView.addObject("numberOfItems", itemList.size());
+        modelAndView.addObject("numberOfItems", numberOfItems);
         modelAndView.addObject("items", itemList);
         modelAndView.addObject("numberOfCategories", categories.size());
-        modelAndView.setViewName("items/homePage");
+        modelAndView.setViewName("items/listItemPage");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/item/create", method = RequestMethod.GET)
+    @GetMapping(value = "/create")
     public String createItemPage(Model model, Item item) {
         List<Category> categories = categoryService.getAllCategories();
         model.addAttribute("categories", categories);
         return "items/createItemPage";
     }
 
-    @RequestMapping(value = "/item/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String createItem(@Valid Item item, BindingResult result, Model model) {
         if (result.hasErrors()) {
             List<Category> categories = categoryService.getAllCategories();
@@ -63,11 +62,10 @@ public class ItemController {
             return "items/createItemPage";
         }
         itemService.createItem(item);
-        return "redirect:/";
+        return "redirect:/items";
     }
 
-    // display single item
-    @RequestMapping(value = "/item/view", method = RequestMethod.GET)
+    @RequestMapping(value = "/view", method = RequestMethod.GET)
     public ModelAndView viewSingleItem(@RequestParam(value = "id") Long id) {
         Item item = itemService.getOneItem(id);
         ModelAndView modelAndView = new ModelAndView();
@@ -76,8 +74,7 @@ public class ItemController {
         return modelAndView;
     }
 
-    // editing functionality and display editing page
-    @RequestMapping(value = "/item/edit/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/{id}", method = RequestMethod.GET)
     public ModelAndView editSingleItem(@PathVariable(value = "id") Long id) {
         Item item = itemService.getOneItem(id);
         List<Category> categories = categoryService.getAllCategories();
@@ -88,17 +85,15 @@ public class ItemController {
         return modelAndView;
     }
 
-    // update item data and save to Repo
-    @RequestMapping(value = "/item/update/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.POST)
     public String updateItemData(Item item, @PathVariable(value = "id") Long id) {
         itemService.updateItem(id, item);
-        return "redirect:/";
+        return "redirect:/items";
     }
 
-    // delete functionality
-    @RequestMapping(value = "/item/delete/{id}", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete/{id}", method = RequestMethod.POST)
     public String deleteItemById(@PathVariable("id") Long id) {
         itemService.deleteItemById(id);
-        return "redirect:/";
+        return "redirect:/items";
     }
 }

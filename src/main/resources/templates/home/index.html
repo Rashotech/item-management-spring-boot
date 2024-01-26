@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Item Management</title>
+    <!-- Link Bootstrap CSS -->
+    <link
+            rel="stylesheet"
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+            integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+            crossorigin="anonymous"
+    />
+    <style>
+        .jumbotron {
+          padding-top: 15px !important;
+          margin-top: 10px !important;
+          padding-bottom: 15px !important;
+        }
+
+        .trans {
+          background-color: transparent !important;
+          color: white !important;
+        }
+
+        .header-bg {
+              width: 100%;
+              min-height: 100vh;
+              background: linear-gradient(rgba(0, 0, 0, 0.601), rgba(0, 0, 0, 0.85)),
+              url("https://fulfilmentmatters.co.uk/wp-content/uploads/2018/11/fulfilment-warehouse.jpg");
+              background-position: center;
+              background-size: cover;
+          }
+
+    </style>
+</head>
+
+<body>
+<div class="bg-img bg-cover header-bg">
+
+    <section class="header">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <a class="navbar-brand" href="index.html"
+            ><span class="o">O</span>ne
+                <span class="inventory">Inventory</span></a
+            >
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/items/create}">CREATE ITEM</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{categories/create}"
+                        >CREATE ITEM CATEGORY</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container text-center">
+            <div class="jumbotron trans">
+                <h1>Item Management System</h1>
+                <p>
+                    Streamline your inventory processes and take control of your items
+                    like never before. Our robust system provides powerful features
+                    designed to enhance your management experience, ensuring precision
+                    and ease.
+                </p>
+            </div>
+
+            <a
+                    th:href="@{/items}"
+                    type="button"
+                    class="btn btn-primary btn-lg mb-4"
+            >Manage Your Items</a
+            >
+
+            <div class="row justify-content-center">
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img
+                                src="https://th.bing.com/th/id/OIP.HRDXCmXT0vYdBbH73Gn9-QAAAA?w=400&h=300&rs=1&pid=ImgDetMain"
+                                alt="Feature Image 1"
+                                class="card-img-top h-100"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">Easy Item Tracking</h5>
+                            <p class="card-text">
+                                Track and manage your items with ease using our intuitive
+                                inventory system.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img
+                                src="https://th.bing.com/th/id/OIP.9RBB4cgEwc8fp64kV91jVwHaEK?rs=1&pid=ImgDetMain"
+                                alt="Feature Image 2"
+                                class="card-img-top h-100"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">Real-time Updates</h5>
+                            <p class="card-text">
+                                Get real-time updates on your inventory, ensuring accurate and
+                                up-to-date information.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        <img
+                                src="https://moz.com/images/cms/analyticsreporting-14.png?w=1200&h=630&q=82&auto=format&fit=crop&dm=1532382383&s=cd8e8e0c5e6dc02c92cba7562d75e1d9"
+                                alt="Feature Image 3"
+                                class="card-img-top h-100"
+                        />
+                        <div class="card-body">
+                            <h5 class="card-title">Customizable Reports</h5>
+                            <p class="card-text">
+                                Generate customizable reports to analyze your inventory data
+                                and make informed decisions.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="bg-dark text-white text-center py-3">
+            &copy; 2024 © FBN Academy Software - Group 1, All Rights Reserved.
+        </footer>
+    </section>
+
+    <!-- Link Bootstrap JS and Popper.js -->
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-U6ISiF3bs9X/l6rIhZz4e6pYzDBMfoBIFBq6gZDvTOH5YCF72f+3nYdK5F72hD16"
+            crossorigin="anonymous"
+    ></script>
+    <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+    ></script>
+</body>
+</html>

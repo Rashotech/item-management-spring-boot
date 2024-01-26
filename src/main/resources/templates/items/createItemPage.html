@@ -13,6 +13,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/items}">Items</a></li>
             <li class="breadcrumb-item active" aria-current="page">Create Item</li>
         </ol>
     </nav>
@@ -22,7 +23,7 @@
             <div class="col-lg-7 mx-auto">
                 <div class="bg-white rounded-lg shadow-sm p-5">
                     <h3 class="my-6">Create Item</h3>
-                    <form role="form" th:object="${item}" th:action="@{/item/create}" method="post">
+                    <form role="form" th:object="${item}" th:action="@{/items/create}" method="post">
                         <div class="mb-3">
                             <label for="name" class="form-label">Item Name</label>
                             <input
