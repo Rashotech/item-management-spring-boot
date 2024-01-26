@@ -20,6 +20,7 @@
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a th:href="@{/}">Home</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/items}">Items</a></li>
             <li class="breadcrumb-item active" aria-current="page">View Item</li>
         </ol>
     </nav>
@@ -37,7 +38,7 @@
                     <div><b>CATEGORY: </b><span th:text="${item.category.name}"></span></div>
                     <br>
                     <br>
-                    <a th:href="@{/}" class="btn btn-primary">Return Home</a>
+                    <a th:href="@{/items}" class="btn btn-primary">Return Home</a>
                 </div>
             </div>
         </div>
